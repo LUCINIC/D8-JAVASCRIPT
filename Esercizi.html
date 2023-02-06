@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="D8Javascript.css">
+    
+    <title>LUCA SMARTPHONE</title>
+</head>
+<body> 
+    <h1> LUCA SMARTPHONE  </h1>
+    <ol class="nascondi">
+      <li id="container"> Prodotti</li>
+      <li>Chi siamo</li>
+      <li>Contatti</li> 
+    </ol> 
+    <table class="tabella">
+        <tr>
+          <td colspan="2"> </td>
+          <td>
+            <a href="wwww.amazon.com">
+              <img src="Smartphone 5.jpg" alt="1 Smartphone">
+            </a>
+          </td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>
+            <a href="wwww.amazon.com">
+              <img src="Smartphone 2.png" alt="2 Smartphone">
+            </a>
+          </td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>
+            <a href="wwww.amazon.com">
+              <img src="Smartphone 3.jpg" alt="3 Smartphone">
+            </a>
+          </td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>
+            <a href="wwww.amazon.com">
+              <img src="Smartphone 4.jpg" alt="4 Smartphone">
+            </a>
+          </td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+      </table> 
+      <hr> 
+      <div>
+        <p>Ciao come stai</p>
+        <ul>
+          <li> Cover </li>
+          <li> Supporto Pc </li>
+          <li> Smartwatch </li>
+        </ul>
+      </div> 
+      <hr>
+      <footer>
+        <p> Luca Smartphone </p>
+        <p> Email : <a href="luca.corrado293@gmail.com"> luca.corrado293@gmail.com </a> </p>
+       
+      </footer> 
+
+
+      <script> 
+
+// Esercizio 1 Dom
+var container = document.getElementById("container"); 
+
+// Esercizio 2 Dom
+var tdElements = document.getElementsByTagName("td"); 
+
+for (var i = 0; i < tdElements.length; i++) {
+  console.log(tdElements[i].textContent);
+} 
+ // Esercizio 3 Dom
+function addTableRow(values) {
+  var table = document.querySelector("table");
+  var newRow = table.insertRow();
+
+  for (var i = 0; i < values.length; i++) {
+    var newCell = newRow.insertCell();
+    newCell.textContent = values[i];
+  }
+}
+
+// Esercizio 4 Dom 
+function changeTitle(newTitle) {
+  document.title = newTitle;
+} 
+
+changeTitle("Luca Phone"); 
+
+// Esercizio 5 Dom
+
+function addTableRow(values) {
+  var table = document.querySelector("table");
+  var newRow = table.insertRow();
+
+  for (var i = 0; i < values.length; i++) {
+    var newCell = newRow.insertCell();
+    newCell.textContent = values[i];
+  }
+} 
+
+//Esercizio 6 Dom 
+
+function aggiungiClasseTabella() {
+  var righeTabella = document.querySelectorAll("table tr");
+
+  for (var i = 0; i < righeTabella.length; i++) {
+    righeTabella[i].classList.add("test");
+  }
+} 
+
+// Eserxizio 7 
+
+
+function impostaSfondoRossoSuLink() {
+  var link = document.getElementsByTagName("a");
+  for (var i = 0; i < link.length; i++) {
+    link[i].style.backgroundColor = "red";
+  }
+}
+
+
+// Esercizio 8 
+
+window.onload = function() {
+  console.log("Page loaded");
+} 
+
+
+// Esercizio 9 Dom
+
+function aggiungiALista(nuovoElemento) {
+  var ul = document.querySelector("ul");
+  var li = document.createElement("li");
+  li.textContent = nuovoElemento;
+  ul.appendChild(li);
+} 
+
+aggiungiALista("Cavo USB");
+aggiungiALista("Cavo Type - C");
+aggiungiALista("Tastiera PC"); 
+
+
+ // Esercizio 10  Dom. Non completo il decimo esercizio perchè tramite css, l' esrcizio precedente ci chiede di nascondere la prima lista e quindi per non perdere le funzioni del penultimo, che sono di mio gradimento.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </script>
+    
+</body>
+</html>
