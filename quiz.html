@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Quiz2.0</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='quiz2.0.js'></script>
+</head>
+<body>
+    <header>
+        <h1>QUIZ</h1>
+    </header>
+    <main id="mainContent">
+    </main>
+    <button id="invio" onclick="calcolaRisultato()">Invio risultato</button>
+    <button id="reset">Reset</button>
+    <footer>
+        <p>questo è un footer!</p>
+    </footer>
+</body> 
+<script>
+    class Question {
+  constructor(category, type, difficulty, question, correct_answer, incorrect_answers) {
+    this.category = category;
+    this.type = type;
+    this.difficulty = difficulty;
+    this.question = question;
+    this.correct_answer = correct_answer;
+    this.incorrect_answers = incorrect_answers;
+  }
+
+  shuffleAnswers() {
+    const allAnswers = this.incorrect_answers.concat(this.correct_answer);
+    for (let i = allAnswers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [allAnswers[i], allAnswers[j]] = [allAnswers[j], allAnswers[i]];
+    }
+    this.allAnswers = allAnswers;
+  }
+}
+
+const questions = [
+  new Question(
+    'Science: Computers',
+    'multiple',
+    'easy',
+    'What does CPU stand for?',
+    'Central Processing Unit',
+    ['Central Process Unit', 'Computer Personal Unit', 'Central Processor Unit']
+  ),
+  new Question(
+    'Science: Computers',
+    'multiple',
+    'easy',
+    'In the programming language Java, which of these keywords would you put on a variable to make sure it doesn&#039;t get modified?',
+    'Final',
+    ['Static', 'Private', 'Public']
+  ),
+  new Question(
+    'Science: Computers',
+    'boolean',
+    'easy',
+    'The logo for Snapchat is a Bell.',
+    'False',
+    ['True']
+  ),
+  new Question(
+    'Science: Computers',
+    'boolean',
+    'easy',
+    'Pointers were not used in the original C programming language; they were added later on in C++.',
+    'False',
+    ['True']
+  ),
+];
+
+questions.forEach(question => question.shuffleAnswers()); 
+
+class Question {
+  constructor(category, type, difficulty, question, correct_answer, incorrect_answers) {
+    this.category = category;
+    this.type = type;
+    this.difficulty = difficulty;
+    this.question = question;
+    this.correct_answer = correct_answer;
+    this.incorrect_answers = incorrect_answers;
+  }
+
+  shuffleAnswers() {
+    const allAnswers = this.incorrect_answers.concat(this.correct_answer);
+    for (let i = allAnswers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [allAnswers[i], allAnswers[j]] = [allAnswers[j], allAnswers[i]];
+    }
+    this.allAnswers = allAnswers;
+  }
+}
+
+const question = [
+  new Question(
+    'Science: Computers',
+    'multiple',
+    'easy',
+    'What is the most preferred image format used for logos in the Wikimedia database?',
+    '.svg',
+    ['.png', '.jpeg', '.gif']
+  ),
+  new Question(
+    'Science: Computers',
+    'multiple',
+    'easy',
+    'In web design, what does CSS stand for?',
+    'Cascading Style Sheet',
+    ['Counter Strike: Source', 'Corrective Style Sheet', 'Computer Style Sheet']
+  ),
+  new Question(
+    'Science: Computers',
+    'multiple',
+    'easy',
+    'What is the code name for the mobile operating system Android 7.0?',
+    'Nougat',
+    ['Ice Cream Sandwich', 'Jelly Bean', 'Marshmallow']
+  ),
+];
+
+questions.forEach(question => question.shuffleAnswers()) ; 
+
+const quizQuestions = [
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'easy',
+    question: 'On Twitter, what is the character limit for a Tweet?',
+    correctAnswer: '140',
+    incorrectAnswers: ['120', '160', '100']
+  },
+  {
+    category: 'Science: Computers',
+    type: 'boolean',
+    difficulty: 'easy',
+    question: 'Linux was first created as an alternative to Windows XP.',
+    correctAnswer: 'False',
+    incorrectAnswers: ['True']
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'easy',
+    question: 'Which programming language shares its name with an island in Indonesia?',
+    correctAnswer: 'Java',
+    incorrectAnswers: ['Python', 'C', 'Jakarta']
+  }
+];
+
+// Funzione eseguita quando la pagina è completamente caricata
+window.onload = function () {
+  const mainQuestion = document.getElementById('mainContent');
+
+  // Ciclo for che scorre le domande del quiz
+  questions.forEach((question, i) => {
+    const divQuestion = document.createElement('div');
+    divQuestion.classList.add('questionContainer');
+
+    const labelQuestion = document.createElement('label');
+    labelQuestion.classList.add('questionTitle');
+    labelQuestion.innerText = question.question;
+
+    const invio = document.createElement('br');
+    divQuestion.append(labelQuestion, invio);
+
+    const completeAnswer = [question.correct_answer, ...question.incorrect_answers];
+    // Spread operator (...) per inserire le risposte corrette e errate in un unico array
+
+    completeAnswer.forEach((answer, j) => {
+      const inputAnswerRadio = document.createElement('input');
+      inputAnswerRadio.name = `question${i}`;
+      inputAnswerRadio.type = 'radio';
+      inputAnswerRadio.id = `question${i}${j}`;
+      inputAnswerRadio.value = answer;
+      inputAnswerRadio.required = true;
+
+      const answerLabel = document.createElement('label');
+      answerLabel.innerText = answer;
+      answerLabel.setAttribute('for', inputAnswerRadio.id);
+
+      const invioElemento = document.createElement('br');
+      divQuestion.append(invioElemento, inputAnswerRadio, answerLabel);
+    });
+
+    const hrElemento = document.createElement('hr');
+    divQuestion.appendChild(hrElemento);
+    mainQuestion.appendChild(divQuestion);
+  });
+}
+
+// Funzione per calcolare il risultato del quiz
+function calcolaRisultato() {
+  const risposte = [];
+
+  let i = 0;
+  while (document.getElementsByName(`question${i}`).length) {
+    const questionRadio = document.getElementsByName(`question${i}`);
+    for (let k = 0; k < questionRadio.length; k++) {
+      if (questionRadio[k].checked) {
+        risposte.push(questionRadio[k].value);
+        break;
+      }
+    }
+    i++;
+  }
+
+  console.log(risposte);
+}
+
+
+
+</script>
+</html>
